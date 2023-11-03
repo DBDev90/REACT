@@ -1,8 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    useEffect(() => {
+        console.log(email);
+        console.log(senha);
+    }, [email, senha]);
 
     const handleEntrar = () => {
         console.log(email);
