@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -9,6 +9,11 @@ export const Login = () => {
         console.log(senha);
     }, [email, senha]);
 
+    const emailLenght = useMemo(() => {
+        console.log('Executou');
+        return email.length * 1000;
+    }, [email.length]);
+
     const handleEntrar = () => {
         console.log(email);
         console.log(senha);
@@ -17,6 +22,8 @@ export const Login = () => {
     return (
         <>
             <form>
+                <p>Quantidade de caracteres no e-mail: {emailLenght}</p>
+
                 <label>
                     <span>E-mail</span>
                     <input value={email} onChange={e => setEmail(e.target.value)} />
