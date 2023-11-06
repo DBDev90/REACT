@@ -8,9 +8,9 @@ interface IUsuarioLogadoContextProps {
     children: React.ReactNode;
 }
 
-const UsuarioLogadoContext = createContext<IUsuarioLogadoContextData>({} as IUsuarioLogadoContextData);
+export const UsuarioLogadoContext = createContext<IUsuarioLogadoContextData>({} as IUsuarioLogadoContextData);
 
-export const UsuarioLogadoProvides: React.FC<IUsuarioLogadoContextProps> = ({ children }) => {
+export const UsuarioLogadoProvider: React.FC<IUsuarioLogadoContextProps> = ({ children }) => {
     return (
         <UsuarioLogadoContext.Provider value={{ nomeDoUsuario: "Douglas" }}>
             {children}
