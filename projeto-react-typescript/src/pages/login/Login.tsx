@@ -1,7 +1,9 @@
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { InputLogin } from "./components/InputLogin";
 import { ButtonLogin } from "./components/ButtonLogin";
-import { UsuarioLogadoContext } from "../../shared/contexts";
+// import { UsuarioLogadoContext } from "../../shared/contexts";
+import { Link } from "react-router-dom";
+import { useUsuarioLogado } from "../../shared/hooks";
 
 export const Login = () => {
     const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -14,7 +16,7 @@ export const Login = () => {
         console.log(senha);
     }, [email, senha]);
 
-    const { nomeDoUsuario } = useContext(UsuarioLogadoContext);
+    const { nomeDoUsuario } = useUsuarioLogado();
 
     const emailLenght = useMemo(() => {
         console.log('Executou');
@@ -47,16 +49,12 @@ export const Login = () => {
                     onChange={newValue => setSenha(newValue)}
                 />
 
-                {/* <label>
-                    <span>Senha</span>
-                    <input type="password" value={senha} ref={inputPasswordRef}
-                        onChange={e => setSenha(e.target.value)} />
-                </label> */}
-
-                {/* <button type="button" onClick={handleEntrar}>Entrar</button> */}
-
                 <ButtonLogin type="button" onClick={handleEntrar}>Entrar</ButtonLogin>
                 <ButtonLogin type="button" onClick={handleEntrar}>Cadastrar</ButtonLogin>
+
+                <div>
+                    <Link to={"/"}>Início</Link>
+                </div>
             </form>
         </>
     )
