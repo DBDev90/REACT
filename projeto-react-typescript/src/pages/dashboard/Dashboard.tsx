@@ -7,7 +7,7 @@ export const Dashboard = () => {
     const counterRef = useRef({ counter: 0 });
 
     // const usuarioLogadoContext = useContext(UsuarioLogadoContext);
-    const { nomeDoUsuario } = useUsuarioLogado();
+    const { nomeDoUsuario, logout } = useUsuarioLogado();
 
     return (
         <>
@@ -18,6 +18,7 @@ export const Dashboard = () => {
             <p>Contador: {counterRef.current.counter}</p>
 
             <button onClick={() => counterRef.current.counter++}>Somar</button>
+            <button onClick={logout}>Logout</button>
 
             <div>
                 <Link to="/login">Login</Link>
