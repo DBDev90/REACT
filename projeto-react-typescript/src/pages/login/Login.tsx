@@ -38,6 +38,7 @@ export const Login = () => {
                     type="password"
                     label="Senha"
                     value={senha}
+                    ref={inputPasswordRef}
                     onChange={newValue => setSenha(newValue)}
                 />
 
