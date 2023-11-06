@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 export const Login = () => {
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
+
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
@@ -26,12 +28,14 @@ export const Login = () => {
 
                 <label>
                     <span>E-mail</span>
-                    <input value={email} onChange={e => setEmail(e.target.value)} />
+                    <input value={email} onChange={e => setEmail(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' ? inputPasswordRef.current?.focus() : undefined} />
                 </label>
 
                 <label>
                     <span>Senha</span>
-                    <input type="password" value={senha} onChange={e => setSenha(e.target.value)} />
+                    <input type="password" value={senha} ref={inputPasswordRef}
+                        onChange={e => setSenha(e.target.value)} />
                 </label>
 
                 <button type="button" onClick={handleEntrar}>Entrar</button>
