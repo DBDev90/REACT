@@ -1,4 +1,4 @@
-import { createContext, useCallback } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 interface IUsuarioLogadoContextData {
     nomeDoUsuario: string;
@@ -12,12 +12,20 @@ interface IUsuarioLogadoContextProps {
 export const UsuarioLogadoContext = createContext<IUsuarioLogadoContextData>({} as IUsuarioLogadoContextData);
 
 export const UsuarioLogadoProvider: React.FC<IUsuarioLogadoContextProps> = ({ children }) => {
+    const [nome, setNome] = useState('');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setNome('Douglas');
+        }, 1000);
+    });
+
     const handleLogout = useCallback(() => {
         console.log('Logout executou');
     }, []);
 
     return (
-        <UsuarioLogadoContext.Provider value={{ nomeDoUsuario: "Teste", logout: handleLogout }}>
+        <UsuarioLogadoContext.Provider value={{ nomeDoUsuario: nome, logout: handleLogout }}>
             {children}
         </UsuarioLogadoContext.Provider>
     )
