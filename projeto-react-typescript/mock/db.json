@@ -8,12 +8,7 @@
     {
       "id": 2,
       "title": "Tarefa 02",
-      "isCompleted": false
-    },
-    {
-      "title": "Tarefa 03",
-      "isCompleted": true,
-      "id": 3
+      "isCompleted": true
     }
   ]
 }
