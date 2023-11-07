@@ -1,7 +1,7 @@
 import { Api } from "../ApiConfig";
 import { ApiException } from "../ApiException";
 
-interface ITarefa {
+export interface ITarefa {
     id: number;
     title: string;
     isCompleted: boolean;
@@ -33,6 +33,7 @@ const create = async (dataToCreate: Omit<ITarefa, 'id'>): Promise<ITarefa | ApiE
         return new ApiException(error.message || 'Erro ao criar o registro.');
     }
 };
+
 const updateById = async (id: string, dataToUpdade: ITarefa): Promise<ITarefa | ApiException> => {
     try {
         const { data } = await Api().put(`/tarefas/${id}`, dataToUpdade);
@@ -41,6 +42,7 @@ const updateById = async (id: string, dataToUpdade: ITarefa): Promise<ITarefa | 
         return new ApiException(error.message || 'Erro ao atualizar o registro.');
     }
 };
+
 const deleteById = async (id: string): Promise<undefined | ApiException> => {
     try {
         await Api().get(`/tarefas/${id}`);
