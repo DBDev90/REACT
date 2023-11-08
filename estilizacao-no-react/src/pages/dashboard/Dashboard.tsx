@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import styled from 'styled-components';
 import './Dashboard.css'
 
 const useClasses = createUseStyles({
@@ -14,6 +15,17 @@ const useClasses = createUseStyles({
     }
 });
 
+const Paragraph = styled.p`
+    background-color: green;
+    color: yellow;
+    &:hover{
+        background-color: aqua;
+    };
+    &:active{
+        background-color: gray;
+    }
+`;
+
 export const Dashboard = () => {
     const classes = useClasses();
 
@@ -27,6 +39,10 @@ export const Dashboard = () => {
 
             <div>
                 <p className={classes.paragraph}>Teste 2 JSS</p>
+            </div>
+
+            <div>
+                <Paragraph >Teste 3 STYLED-COMPONENTS</Paragraph>
             </div>
         </>
     )
