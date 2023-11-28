@@ -2,8 +2,9 @@
   "pessoas": [
     {
       "id": 1,
-      "nome": "Douglas",
-      "sobrenome": "Bordinassi"
+      "cidadeId": 1,
+      "email": "douglas@gmail.com",
+      "nomeCompleto": "Douglas Bordinassi"
     }
   ]
 }
