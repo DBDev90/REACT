@@ -8,7 +8,7 @@ export const Enviroment = {
      */
     INPUT_DE_BUSCA: 'Pesquisar...',
     /**
-     * Textp exibido quando nenhum registro é encontrado em uma listagem
+     * Texto exibido quando nenhum registro é encontrado em uma listagem
      */
     LISTAGEM_VAZIA: 'Nenhum registro encontrado.',
     /**

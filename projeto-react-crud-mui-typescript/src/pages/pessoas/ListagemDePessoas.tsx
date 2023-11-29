@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from "@mui/material";
+import {
+    Icon, IconButton, LinearProgress,
+    Pagination, Paper, Table, TableBody, TableCell,
+    TableContainer, TableFooter, TableHead, TableRow
+} from "@mui/material";
 
 import { IListagemPessoa, PessoasService } from "../../shared/services/api/pessoas/PessoasService";
 import { FerramentasDaListagem } from "../../shared/components";
