@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from "@mui/material";
 
 import { IListagemPessoa, PessoasService } from "../../shared/services/api/pessoas/PessoasService";
 import { FerramentasDaListagem } from "../../shared/components";
@@ -10,7 +10,7 @@ import { useDebounce } from "../../shared/hooks";
 
 export const ListagemDePessoas: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const { debounce } = useDebounce(2000);
+    const { debounce } = useDebounce(1000);
 
     const [rows, setRows] = useState<IListagemPessoa[]>([]);
     const [totalCont, setTotalCont] = useState(0);
@@ -71,6 +71,15 @@ export const ListagemDePessoas: React.FC = () => {
                             </TableRow>
                         ))}
                     </TableBody>
+                    <TableFooter>
+                        {isLoading && (
+                            <TableRow>
+                                <TableCell colSpan={3}>
+                                    <LinearProgress variant="indeterminate" />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableFooter>
                 </Table>
             </TableContainer>
 
