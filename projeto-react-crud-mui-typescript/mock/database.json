@@ -5,6 +5,30 @@
       "cidadeId": 1,
       "email": "douglas@gmail.com",
       "nomeCompleto": "Douglas Bordinassi"
+    },
+    {
+      "id": 2,
+      "cidadeId": 2,
+      "email": "carla@gmail.com",
+      "nomeCompleto": "Carla Cunha"
+    },
+    {
+      "id": 3,
+      "cidadeId": 1,
+      "email": "cidinha@gmail.com",
+      "nomeCompleto": "Aparecida"
+    },
+    {
+      "id": 4,
+      "cidadeId": 2,
+      "email": "joão@gmail.com",
+      "nomeCompleto": "João Silva"
+    },
+    {
+      "id": 5,
+      "cidadeId": 1,
+      "email": "clara@gmail.com",
+      "nomeCompleto": "Clara Costa"
     }
   ]
 }
