@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Form } from "@unform/web";
 
 import { LayoutBaseDePagina } from "../../shared/layouts";
 import { FerramentasDeDetalhe } from "../../shared/components/ferramentas-de-detalhe/FerramentasDeDetalhe";
-import { useEffect, useState } from "react";
 import { PessoasService } from "../../shared/services/api/pessoas/PessoasService";
-import { LinearProgress } from "@mui/material";
+import { VTextField } from "../../shared/forms";
 
 export const DetalheDePessoas: React.FC = () => {
     const { id = 'nova' } = useParams<'id'>();
@@ -68,9 +69,15 @@ export const DetalheDePessoas: React.FC = () => {
                 />
             }
         >
-            {isLoading && (
+            <Form onSubmit={console.log}>
+                <VTextField
+                    name="nomeCompleto"
+                />
+            </Form>
+
+            {/* {isLoading && (
                 <LinearProgress variant="indeterminate" />
-            )}
+            )} */}
         </LayoutBaseDePagina>
     )
 }
