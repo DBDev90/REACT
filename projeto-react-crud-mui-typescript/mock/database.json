@@ -2,21 +2,20 @@
   "pessoas": [
     {
       "id": 1,
-      "cidadeId": 1,
+      "nomeCompleto": "Douglas Bordinassi",
       "email": "douglas@gmail.com",
-      "nomeCompleto": "Douglas Bordinassi"
+      "codCidade": "1"
     },
     {
       "id": 2,
-      "cidadeId": 2,
+      "nomeCompleto": "Carla Cunha",
       "email": "carla@gmail.com",
-      "nomeCompleto": "Carla Cunha"
+      "codCidade": "1"
     },
     {
       "id": 3,
-      "cidadeId": 1,
-      "email": "cidinha@gmail.com",
-      "nomeCompleto": "Aparecida"
+      "nomeCompleto": "Aparecida Rosalina",
+      "email": "cidinha@gmail.com"
     },
     {
       "id": 5,

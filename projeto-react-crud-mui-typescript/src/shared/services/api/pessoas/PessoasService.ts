@@ -11,7 +11,7 @@ export interface IListagemPessoa {
 export interface IDetalhePessoa {
     id: number;
     email: string;
-    cidade: string;
+    cidade: number;
     nomeCompleto: string;
 }
 

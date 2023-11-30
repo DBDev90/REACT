@@ -10,7 +10,7 @@ import { FerramentasDeDetalhe } from "../../shared/components/ferramentas-de-det
 
 interface IFormData {
     email: string;
-    codCidade: string;
+    cidade: number;
     nomeCompleto: string;
 }
 
@@ -36,14 +36,38 @@ export const DetalheDePessoas: React.FC = () => {
                         navigate('/pessoas');
                     } else {
                         setNome(result.nomeCompleto);
-                        console.log(result);
+                        formRef.current?.setData(result);
                     }
                 });
         }
     }, [id, navigate]);
 
     const handleSave = (dados: IFormData) => {
-        console.log(dados);
+        setIsLoading(true);
+
+        if (id === 'nova') {
+            PessoasService
+                .create(dados)
+                .then((result) => {
+                    setIsLoading(false);
+
+                    if (result instanceof Error) {
+                        alert(result.message);
+                    } else {
+                        navigate(`/pessoas/detalhe/${result}`)
+                    }
+                });
+        } else {
+            PessoasService
+                .updateById(Number(id), { id: Number(id), ...dados })
+                .then((result) => {
+                    setIsLoading(false);
+
+                    if (result instanceof Error) {
+                        alert(result.message);
+                    }
+                });
+        }
     };
 
     const handleDelete = (id: number) => {
@@ -79,9 +103,9 @@ export const DetalheDePessoas: React.FC = () => {
             }
         >
             <Form ref={formRef} onSubmit={handleSave}>
-                <VTextField name="nomeCompleto" />
-                <VTextField name="email" />
-                <VTextField name="codCidade" />
+                <VTextField placeholder="Nome completo" name="nomeCompleto" />
+                <VTextField placeholder="E-mail" name="email" />
+                <VTextField placeholder="Código da cidade" name="codCidade" />
             </Form>
 
             {/* {isLoading && (
