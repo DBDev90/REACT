@@ -7,6 +7,7 @@ import { VTextField } from "../../shared/forms";
 import { LayoutBaseDePagina } from "../../shared/layouts";
 import { PessoasService } from "../../shared/services/api/pessoas/PessoasService";
 import { FerramentasDeDetalhe } from "../../shared/components/ferramentas-de-detalhe/FerramentasDeDetalhe";
+import { Box, Grid, LinearProgress, Paper, Typography } from "@mui/material";
 
 interface IFormData {
     email: string;
@@ -103,9 +104,48 @@ export const DetalheDePessoas: React.FC = () => {
             }
         >
             <Form ref={formRef} onSubmit={handleSave}>
-                <VTextField placeholder="Nome completo" name="nomeCompleto" />
-                <VTextField placeholder="E-mail" name="email" />
-                <VTextField placeholder="Código da cidade" name="codCidade" />
+                <Box margin={1} display="flex" flexDirection="column" component={Paper} variant="outlined">
+
+                    <Grid container direction="column" padding={2}>
+                        {isLoading && (
+                            <Grid item>
+                                <LinearProgress variant="indeterminate" />
+                            </Grid>
+                        )}
+
+                        <Grid item>
+                            <Typography variant="h6">Geral</Typography>
+                        </Grid>
+
+                        <Grid container item direction="row" spacing={2}>
+                            <Grid item xs={12} sm={8} md={6} xl={2}>
+                                <VTextField
+                                    fullWidth
+                                    label="Nome completo"
+                                    name="nomeCompleto"
+                                    disabled={isLoading}
+                                    onChange={e => setNome(e.target.value)}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6} md={4} xl={1}>
+                                <VTextField
+                                    fullWidth
+                                    label="E-mail"
+                                    name="email"
+                                    disabled={isLoading}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={2} xl={1}>
+                                <VTextField
+                                    fullWidth
+                                    label="Código da cidade"
+                                    name="codCidade"
+                                    disabled={isLoading}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Box>
             </Form>
 
             {/* {isLoading && (

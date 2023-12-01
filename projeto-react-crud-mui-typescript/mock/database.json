@@ -19,9 +19,8 @@
     },
     {
       "id": 5,
-      "cidadeId": 1,
-      "email": "clara@gmail.com",
-      "nomeCompleto": "Clara Costa"
+      "nomeCompleto": "Clara Costa Silva",
+      "email": "clara@gmail.com"
     },
     {
       "id": 6,
