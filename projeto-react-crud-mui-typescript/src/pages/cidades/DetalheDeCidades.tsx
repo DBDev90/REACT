@@ -5,22 +5,18 @@ import * as yup from 'yup';
 import { LayoutBaseDePagina } from "../../shared/layouts";
 import { VTextField, VForm, useVForm, IVFormErros } from "../../shared/forms";
 import { Box, Grid, LinearProgress, Paper, Typography } from "@mui/material";
-import { PessoasService } from "../../shared/services/api/pessoas/PessoasService";
+import { CidadesService } from "../../shared/services/api/cidades/CidadesService";
 import { FerramentasDeDetalhe } from "../../shared/components/ferramentas-de-detalhe/FerramentasDeDetalhe";
 
 interface IFormData {
-    email: string;
-    cidade: number;
-    nomeCompleto: string;
+    nome: string;
 }
 
 const formValidationSchema: yup.Schema<IFormData> = yup.object().shape({
-    cidade: yup.number().required(),
-    email: yup.string().required().email(),
-    nomeCompleto: yup.string().required().min(3),
+    nome: yup.string().required().min(3)
 });
 
-export const DetalheDePessoas: React.FC = () => {
+export const DetalheDeCidades: React.FC = () => {
     const { id = 'nova' } = useParams<'id'>();
     const navigate = useNavigate();
 
@@ -33,23 +29,21 @@ export const DetalheDePessoas: React.FC = () => {
         if (id !== 'nova') {
             setIsLoading(true);
 
-            PessoasService.getById(Number(id))
+            CidadesService.getById(Number(id))
                 .then((result) => {
                     setIsLoading(false);
 
                     if (result instanceof Error) {
                         alert(result.message);
-                        navigate('/pessoas');
+                        navigate('/cidades');
                     } else {
-                        setNome(result.nomeCompleto);
+                        setNome(result.nome);
                         formRef.current?.setData(result);
                     }
                 });
         } else {
             formRef.current?.setData({
-                email: '',
-                codCidade: '',
-                nomeCompleto: '',
+                nome: ''
             })
         }
     }, [id, formRef, navigate]);
@@ -61,7 +55,7 @@ export const DetalheDePessoas: React.FC = () => {
                 setIsLoading(true);
 
                 if (id === 'nova') {
-                    PessoasService
+                    CidadesService
                         .create(dadosValidados)
                         .then((result) => {
                             setIsLoading(false);
@@ -70,14 +64,14 @@ export const DetalheDePessoas: React.FC = () => {
                                 alert(result.message);
                             } else {
                                 if (isSaveAndClose()) {
-                                    navigate('/pessoas');
+                                    navigate('/cidades');
                                 } else {
-                                    navigate(`/pessoas/detalhe/${result}`);
+                                    navigate(`/cidades/detalhe/${result}`);
                                 }
                             }
                         });
                 } else {
-                    PessoasService
+                    CidadesService
                         .updateById(Number(id), { id: Number(id), ...dadosValidados })
                         .then((result) => {
                             setIsLoading(false);
@@ -86,7 +80,7 @@ export const DetalheDePessoas: React.FC = () => {
                                 alert(result.message);
                             } else {
                                 if (isSaveAndClose()) {
-                                    navigate('/pessoas');
+                                    navigate('/cidades');
                                 }
                             }
                         });
@@ -108,13 +102,13 @@ export const DetalheDePessoas: React.FC = () => {
 
     const handleDelete = (id: number) => {
         if (window.confirm('Realmente deseja apagar o registro?')) {
-            PessoasService.deleteById(id)
+            CidadesService.deleteById(id)
                 .then(result => {
                     if (result instanceof Error) {
                         alert(result.message);
                     } else {
                         alert('Registro apagado com sucesso!');
-                        navigate('/pessoas');
+                        navigate('/cidades');
                     }
                 });
         }
@@ -122,7 +116,7 @@ export const DetalheDePessoas: React.FC = () => {
 
     return (
         <LayoutBaseDePagina
-            titulo={id === 'nova' ? 'Nova pessoa' : nome}
+            titulo={id === 'nova' ? 'Nova cidade' : nome}
             barraDeFerramentas={
                 <FerramentasDeDetalhe
                     textoBotaoNovo="Nova"
@@ -132,9 +126,9 @@ export const DetalheDePessoas: React.FC = () => {
 
                     aoCLicarEmSalvar={save}
                     aoClicarEmSalvarFechar={isSaveAndClose}
-                    aoClicarEmVoltar={() => navigate('/pessoas')}
+                    aoClicarEmVoltar={() => navigate('/cidades')}
                     aoClicarEmApagar={() => handleDelete(Number(id))}
-                    aoClicarEmNovo={() => navigate('/pessoas/detalhe/nova')}
+                    aoClicarEmNovo={() => navigate('/cidades/detalhe/nova')}
                 />
             }
         >
@@ -156,26 +150,10 @@ export const DetalheDePessoas: React.FC = () => {
                             <Grid item xs={12} sm={8} md={6} xl={2}>
                                 <VTextField
                                     fullWidth
-                                    label="Nome completo"
-                                    name="nomeCompleto"
+                                    label="Nome"
+                                    name="nome"
                                     disabled={isLoading}
                                     onChange={e => setNome(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} xl={1}>
-                                <VTextField
-                                    fullWidth
-                                    label="E-mail"
-                                    name="email"
-                                    disabled={isLoading}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={4} md={2} xl={1}>
-                                <VTextField
-                                    fullWidth
-                                    label="Código da cidade"
-                                    name="codCidade"
-                                    disabled={isLoading}
                                 />
                             </Grid>
                         </Grid>

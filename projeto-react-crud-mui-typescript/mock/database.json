@@ -81,5 +81,11 @@
       "email": "clara@gmail.com",
       "nomeCompleto": "Clara Costa"
     }
+  ],
+  "cidades": [
+    {
+      "nome": "Taquaritinga",
+      "id": 1
+    }
   ]
 }
