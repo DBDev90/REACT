@@ -15,7 +15,9 @@
     {
       "id": 3,
       "nomeCompleto": "Aparecida Rosalina",
-      "email": "cidinha@gmail.com"
+      "email": "cidinha@gmail.com",
+      "cidade": 1,
+      "codCidade": 1
     },
     {
       "id": 5,
@@ -86,6 +88,22 @@
     {
       "nome": "Taquaritinga",
       "id": 1
+    },
+    {
+      "id": 2,
+      "nome": "Batatais"
+    },
+    {
+      "nome": "Ribeirão Preto",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "nome": "Araraquara"
+    },
+    {
+      "nome": "Matão",
+      "id": 5
     }
   ]
 }
