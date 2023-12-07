@@ -105,5 +105,10 @@
       "nome": "Matão",
       "id": 5
     }
+  ],
+  "auth": [
+    {
+      "accessToken": "aaa.bbb.ccc"
+    }
   ]
 }
