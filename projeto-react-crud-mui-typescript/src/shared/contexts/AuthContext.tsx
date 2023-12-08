@@ -1,4 +1,4 @@
-import { createContext, useCallback, useMemo, useState, useEffect } from 'react';
+import { createContext, useCallback, useMemo, useState, useEffect, useContext } from 'react';
 import { AuthService } from '../services/api/auth/AuthService';
 
 interface IAuthContextData {
@@ -19,6 +19,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [accessToken, setAccessToken] = useState<string>();
 
     useEffect(() => {
+        localStorage.clear();
         const accessToken = localStorage.getItem(LOCAL_STORAGE_KEY_ACCESS_TOKEN);
 
         if (accessToken) {
@@ -54,3 +55,5 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         </AuthContext.Provider>
     );
 };
+
+export const useAuthContext = () => useContext(AuthContext);
